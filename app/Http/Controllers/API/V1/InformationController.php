@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 //use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\Information;
+use Illuminate\Support\Carbon;
 
 class InformationController extends BaseController
 {
@@ -44,12 +45,15 @@ class InformationController extends BaseController
         $input = [
             'data'=>$request->input()
         ];
+        $start = Carbon::now()->timestamp;
         $item = Information::create($input);
         $size = memory_get_usage();
+        $time = $item->created_at->timestamp -  $start;
+
 
 //        dd(memory_get_usage($this->convert(true)));
 //        dd($this->print_mem());
-        dd($item['created_at']);
+        return array("size"=>$size, "time"=>$time);
 
     }
 
@@ -74,4 +78,6 @@ class InformationController extends BaseController
 ////        echo 'The script is now using: <strong>' . round($mem_usage / 1024) . 'KB</strong> of memory.<br>';
 ////        echo 'Peak usage: <strong>' . round($mem_peak / 1024) . 'KB</strong> of memory.<br><br>';
 //    }
+
+
 }
