@@ -31,9 +31,8 @@ class LoginUserCommand extends Command
     {
         if (Auth::attempt(['email' => $this->argument('email'),'password' =>  $this->argument('password')])){
             $user = Auth::user();
-            $token = $user->createToken('MyApp')->accessToken;
-
-//            User::where('id', $user->id)->update(['token' => $token]);
+            $token = $user->createToken($user->getAuthIdentifier())->accessToken;
+            User::where('id', $user->id)->update(['token' => $token]);
 
             $this->info('Successfuly update token');
 //            return response()->json(['token'=> $token]);

@@ -21,10 +21,12 @@ use App\Http\Controllers\API\V1\InformationController;
 
 
 Route::group(['middleware' => 'auth:api'], function (){
-    echo "asdasd";
+    Route::group(['prefix' => 'backend'], function (){
+        Route::match(['get', 'post'],'/send-info', [InformationController::class, 'informationRequesr']);
+    });
 });
 
-Route::group(['prefix' => 'backend'], function (){
-//    Route::get('/information', [InformationController::class, 'index']);
-    Route::match(['get', 'post'],'/send-info', [InformationController::class, 'informationRequesr']);
-});
+//Route::group(['prefix' => 'backend'], function (){
+////    Route::get('/information', [InformationController::class, 'index']);
+//    Route::match(['get', 'post'],'/send-info', [InformationController::class, 'informationRequesr']);
+//});
