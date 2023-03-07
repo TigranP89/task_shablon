@@ -27,8 +27,6 @@ class InformationController extends BaseController
 
     public function informationRequesr(Request $request)
     {
-//        dd($_SERVER['REQUEST_METHOD']);
-
         $input = [
             'data'=>$request->all()
         ];
@@ -38,11 +36,6 @@ class InformationController extends BaseController
         $time = $item->created_at->timestamp -  $start;
 
         return array("size"=>$size, "time"=>$time);
-//        return response()->json([
-//            'data' => array("size"=>$size, "time"=>$time),
-//            'status'=>200 ,
-//            'message'=>'New product was created.'
-//        ]);
     }
 
 

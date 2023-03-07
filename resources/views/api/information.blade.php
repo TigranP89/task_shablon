@@ -27,20 +27,6 @@
 <script>
 
     $(document).ready(function(){
-        // $('select').on('change', function() {
-        //     if ( this.value == "get"){
-        //         // alert(this.value);
-        //         // $("form").submit(function(e){
-        //         //     e.preventDefault();
-        //         // });
-        //         $("#send-info").attr("method", this.value);
-        //
-        //     } else if (this.value == "post"){
-        //
-        //         $("#send-info").attr("method", this.value);
-        //     }
-        // });
-
         $("#send-info").submit('ajax', function (e){
             e.preventDefault();
             let token = $('meta[name="csrf-token"]').attr('content');
