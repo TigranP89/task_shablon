@@ -1,45 +1,63 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Information</title>
+@section('content')
+<div class="container">
 
-        <!-- Fonts -->
-        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <select class="form-select" aria-label="Default select example" id="myMethod">
+        <option value="" selected>Open this select menu</option>
+        <option value="get">GET</option>
+        <option value="post">POST</option>
+    </select>
 
-        <!-- Styles -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <form id="send-info">
+{{--    <form id="send-info" method="get" action="/send-info">--}}
+        @csrf
+        <div class="mb-3">
+            <label for="information" class="form-label">Input Information</label>
+            <input type="text" class="form-control" id="information">
+        </div>
 
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+@endsection
 
-    </head>
-    <body>
-    <div class="container">
-
-
-        <form>
-            @csrf
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="get">GET</option>
-                <option value="post">POST</option>
-            </select>
-
-            <div class="mb-3">
-                <label for="information" class="form-label">Input Information</label>
-                <input type="text" class="form-control" id="information">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    </body>
-</html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
+
+    $(document).ready(function(){
+        // $('select').on('change', function() {
+        //     if ( this.value == "get"){
+        //         // alert(this.value);
+        //         // $("form").submit(function(e){
+        //         //     e.preventDefault();
+        //         // });
+        //         $("#send-info").attr("method", this.value);
+        //
+        //     } else if (this.value == "post"){
+        //
+        //         $("#send-info").attr("method", this.value);
+        //     }
+        // });
+
+        $("#send-info").submit('ajax', function (e){
+            e.preventDefault();
+            let token = $('meta[name="csrf-token"]').attr('content');
+            let data = $("#information").val();
+            let method = $("#myMethod").find(":selected").val();
+
+            $.ajax({
+                url: "send-info",
+                method: method,
+                dataType: 'json',
+                data: {
+                    token:token,
+                    data:data
+                },
+            })
+        })
+
+    });
 
 </script>

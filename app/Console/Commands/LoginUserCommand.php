@@ -35,6 +35,7 @@ class LoginUserCommand extends Command
             User::where('id', $user->id)->update(['token' => $token]);
 
             $this->info('Successfuly update token');
+
 //            return response()->json(['token'=> $token]);
         } else {
             $this->info('Something gone wrong');
