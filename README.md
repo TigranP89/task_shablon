@@ -32,5 +32,5 @@ All fields are required.
 
 command.Where `email` is an existing email, `password` matches the password of the current email.
 
-
+IV. Create `GET` and `POST` requests at the same time and return `JSON` object. The entry point is on `http://ask_shablon.loc/api/backend/information` page.
 
