@@ -34,3 +34,13 @@ command.Where `email` is an existing email, `password` matches the password of t
 
 IV. Create `GET` and `POST` requests at the same time and return `JSON` object. The entry point is on `http://ask_shablon.loc/api/backend/information` page.
 
+V.
+
+| Task        | Grade           | Spent  | Comments  |
+| ------------- |-------------| -----| -----|
+| Install empty project      | 10 min  | 10 min | Install Laravel standart project |
+| Create virtual host      | 20 min      |   20 min | Create virtual host  |
+| Seting connection to db      | 10 min      |   10 min | Create mysqlite sinple db( youe can do as you wish)  |
+| Install Laravel passport lib | 10 min | 10 min | It was simple  |
+| Create Laravel artisan commands  | 40 min | 5 hours | It's take some time to configure Console Commands(in the end i can generat token for laravel passport auth, but cann't log in. It was difficult problen that i couidn`t decide )  |
+| Get input as `get` and `post` request,  return request information| 40 min | 2 hours | Cann't undersund how returt size and time of seved information |
